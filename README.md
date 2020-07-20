@@ -44,7 +44,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
  closure is the ability to access a variable within a function by using a function(called a closure), where the variable would outherwise be out of scope. this is done by making another function withing the function and having that function pass the scoped variable, then when calling the inner function, the scoped varibale will be accessible along with any memory it had retained.
+ 
 2. Study the following code, then answer the questions below.
 
 ```js

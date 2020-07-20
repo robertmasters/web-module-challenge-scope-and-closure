@@ -27,10 +27,17 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ * counter1 returns a function
+ * Counter2 returns the value of count
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * counter1, because it has an inner function which is requesting access to the outer functions variable.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * counter1: when you need to access the code within a function.
+ * counter2: when your only returning variables that are global
  *
 */
 
@@ -56,11 +63,12 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+     let randomNumber = Math.floor(Math.random() * Math.floor(2));
+    return randomNumber;
 }
+
+console.log(inning(2));
 
 /* Task 3: finalScore()
 
@@ -76,11 +84,31 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inningFunc, innings){
+  let homeScore = 0;
+  let awayScore = 0;
 
-  /*Code Here*/
+   //determining away score
+  for (let i = 0;i<innings;i++){
+    homeScore += inningFunc();
+  }
+  //determining away score
+  for (let i = 0;i<innings;i++){
+    awayScore += inningFunc();
+  }
+//returning score in object format as indicated by task
+  let score = {
+    home: homeScore,
+    away: awayScore
+  };
 
+  console.log(score); //testing
+  return score;
 }
+
+let finals = finalScore(inning,9);
+console.log(finals);
+
 
 /* Task 4: 
 
