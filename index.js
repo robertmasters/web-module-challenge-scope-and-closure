@@ -59,16 +59,17 @@ function counter2() {
 }
 
 
+
 /* Task 2: inning() 
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
 function inning(){
-     let randomNumber = Math.floor(Math.random() * Math.floor(2));
+     let randomNumber = Math.floor(Math.random() * Math.floor(3));
     return randomNumber;
 }
 
-console.log(inning(2));
+console.log(inning(5));
 
 /* Task 3: finalScore()
 
@@ -88,14 +89,15 @@ function finalScore(inningFunc, innings){
   let homeScore = 0;
   let awayScore = 0;
 
-   //determining away score
+   //determining home score by passing the inning function in task 2
   for (let i = 0;i<innings;i++){
     homeScore += inningFunc();
-  }
-  //determining away score
-  for (let i = 0;i<innings;i++){
     awayScore += inningFunc();
   }
+  //determining away score same way as home
+  // for (let i = 0;i<innings;i++){
+  //   awayScore += inningFunc();
+  // }
 //returning score in object format as indicated by task
   let score = {
     home: homeScore,
@@ -130,7 +132,7 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
-function getInningScore(inningFunc){
+function getInningScore(inningFunc){ //function works similar to task 3 but it is only applying the score to one single inning instead of multiple innings.
   
   let homeScore = inningFunc();
   let awayScore = inningFunc();
@@ -161,4 +163,4 @@ function scoreboard(getInningScore, inning, numInnings) {
 }
 
 let cubsVsReds = scoreboard(getInningScore, inning, 9); //initializing scoreboard function
-
+console.log(cubsVsReds);
