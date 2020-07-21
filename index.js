@@ -144,11 +144,14 @@ function getInningScore(inningFunc){
 }
 
 function scoreboard(getInningScore, inning, numInnings) {
-  let inn = 0;
+  let inn = 0; let homeTally = 0; let awayTally = 0;
   for (let i =0;i<numInnings;i++){
     inn = getInningScore(inning);
-    console.log(i+' innning: '+inn.awayScore + ' - ' + inn.homeScore);
-  }
-}
+    console.log(i+' innning: '+inn['home'] + ' - ' + inn['away']);
+    homeTally += inn['home'];
+    awayTally += inn['away'];
 
+  }
+  console.log('Final Score: ' + awayTally + ' - ' + homeTally );
+}
 
