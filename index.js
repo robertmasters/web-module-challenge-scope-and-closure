@@ -145,13 +145,20 @@ function getInningScore(inningFunc){
 
 function scoreboard(getInningScore, inning, numInnings) {
   let inn = 0; let homeTally = 0; let awayTally = 0;
+
   for (let i =0;i<numInnings;i++){
-    inn = getInningScore(inning);
-    console.log(i+' innning: '+inn['home'] + ' - ' + inn['away']);
+
+    inn = getInningScore(inning); //the inning score is sent to the variable inn.
+
+    console.log(i+' innning: '+inn['home'] + ' - ' + inn['away']); //outputting the score per inning as per task
+
+    //aggregating tallys so that they can be shown in the end as the final score.
     homeTally += inn['home'];
     awayTally += inn['away'];
 
   }
-  console.log('Final Score: ' + awayTally + ' - ' + homeTally );
+  console.log('Final Score: ' + homeTally + ' - ' + awayTally );
 }
+
+let cubsVsReds = scoreboard(getInningScore, inning, 9); //initializing scoreboard function
 
