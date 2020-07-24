@@ -27,10 +27,17 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ * counter1 returns a function
+ * Counter2 returns the value of count
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * counter1, because it has an inner function which is requesting access to the outer functions variable.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * counter1: when you need to access the code within a function.
+ * counter2: when your only returning variables that are global
  *
 */
 
@@ -52,15 +59,17 @@ function counter2() {
 }
 
 
+
 /* Task 2: inning() 
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+     let randomNumber = Math.floor(Math.random() * Math.floor(3));
+    return randomNumber;
 }
+
+console.log(inning(5));
 
 /* Task 3: finalScore()
 
@@ -76,11 +85,32 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inningFunc, innings){
+  let homeScore = 0;
+  let awayScore = 0;
 
-  /*Code Here*/
+   //determining home score by passing the inning function in task 2
+  for (let i = 0;i<innings;i++){
+    homeScore += inningFunc();
+    awayScore += inningFunc();
+  }
+  //determining away score same way as home
+  // for (let i = 0;i<innings;i++){
+  //   awayScore += inningFunc();
+  // }
+//returning score in object format as indicated by task
+  let score = {
+    home: homeScore,
+    away: awayScore
+  };
 
+  console.log(score); //testing
+  return score;
 }
+
+let finals = finalScore(inning,9);
+console.log(finals);
+
 
 /* Task 4: 
 
@@ -102,9 +132,35 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
+function getInningScore(inningFunc){ //function works similar to task 3 but it is only applying the score to one single inning instead of multiple innings.
+  
+  let homeScore = inningFunc();
+  let awayScore = inningFunc();
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+  let score = {
+    home: homeScore,
+    away: awayScore
+  };
+  return score;
+
 }
 
+function scoreboard(getInningScore, inning, numInnings) {
+  let inn = 0; let homeTally = 0; let awayTally = 0;
 
+  for (let i =0;i<numInnings;i++){
+
+    inn = getInningScore(inning); //the inning score is sent to the variable inn.
+
+    console.log(i+' innning: '+inn['home'] + ' - ' + inn['away']); //outputting the score per inning as per task
+
+    //aggregating tallys so that they can be shown in the end as the final score.
+    homeTally += inn['home'];
+    awayTally += inn['away'];
+
+  }
+  console.log('Final Score: ' + homeTally + ' - ' + awayTally );
+}
+
+let cubsVsReds = scoreboard(getInningScore, inning, 9); //initializing scoreboard function
+console.log(cubsVsReds);
